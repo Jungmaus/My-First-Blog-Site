@@ -173,7 +173,7 @@ namespace teknolojihaberleri.Controllers
 
         public SqlConnection Baglan()
         {
-            SqlConnection baglanti = new SqlConnection(@"Data Source=mssql11.domainhizmetleri.com;Initial Catalog=sametsen_turk;User ID=sametsen_senturk;Password=iE1abd439");
+            SqlConnection baglanti = new SqlConnection(@" ! DATABASE PROVIDER ! ");
             baglanti.Open();
             return baglanti;
         }
