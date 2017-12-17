@@ -1,0 +1,180 @@
+﻿@model  HaberSayfasiCek
+@using teknolojihaberleri.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="tr" />
+    <meta name="description" content="En güncel Teknoloji Haberlerini burada bulabilirsiniz." />
+    <meta name="keywords" content="teknoloji, teknoloji haberleri, haberler, güncel teknoloji haberleri " />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sametsenturk.com | Güncel Teknoloji Haberleri</title>
+    <link href="~/Content/indexcss/1-col-portfolio.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/habergostercss/yorumlar.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Yonlendir_AnaSayfa">Sametsenturk.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home/Yonlendir_AnaSayfa">Ana Sayfa</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Yonlendir_Ben">Ben Kimim ?</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Yonlendir_Iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+    @**@
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Teknoloji Haberleri
+                    <small>En Son Eklenenler</small>
+                </h1>
+            </div>
+        </div>
+
+
+
+        @foreach (teknolojihaberleri.Models.Haber haber in Model.Haber_Listesi)
+        {
+            <div class="row">
+                <div class="col-md-7">
+                    <a href="#">
+                        <img class="img-responsive" src="~/Images/dunyaana.png" alt="Haber Resim" />
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <h3>@haber.Baslik.ToString()</h3>
+                    <h4>@haber.Konu.ToString()</h4>
+                    <p>@haber.Ozet.ToString()</p>
+                    <h6>@haber.Zaman.ToString()</h6>
+                    <a class="btn btn-primary" href="~/Home/HaberGoster?id=@haber.Id.ToString()">Habere Git <span class="glyphicon glyphicon-send"></span></a>
+                </div>
+            </div>
+            <hr>
+        }
+
+
+        @**@
+        
+
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="~/Home/Index?a=1&b=10">1</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Index?a=11&b=20">2</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Index?a=21&b=30">3</a>
+                    </li>
+                    <li>
+                      <a href="~/Home/Index?a=31&b=b40">4</a>
+                    </li>
+                    <li>
+                      <a href="~/Home/Index?a=41&b=50">5</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Index">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a href="~/Home/Yonlendir_Iletisim" title="Iletişim Sayfası">
+            <img class="img-responsive" src="~/Images/reklambanner.png" alt="Reklam Resim" />
+        </a>
+      
+
+        <div class="detailBox">
+            <div class="titleBox">
+                <label>Ziyaretçi Yorumları</label>
+                <button type="button" class="close" aria-hidden="true">&times;</button>
+            </div>
+            <div class="commentBox">
+
+                <p class="taskDescription">Lütfen bu alanı iyi niyetli kullanınız.</p>
+            </div>
+            <div class="actionBox">
+                @foreach (teknolojihaberleri.Models.Yorum onecomment in Model.Yorumlar)
+            {
+                    <ul class="commentList">
+                        <li>
+                            <div class="commenterImage">
+                                <img src="~/Images/commentimg.png" alt="Kullanıcı Resim" />
+                            </div>
+                            <div class="commentText">
+                                <p class="">@onecomment.Icerik.ToString()</p> <span class="date sub-text">@onecomment.Zaman.ToString()</span>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                @using (Html.BeginForm("Index_Yorum_Ekle", "Home", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+            {
+                    <form>
+                        <div class="form-group">
+                            <input name="txtyorum" class="form-control" type="text" placeholder="Adınız - Yorumunuz" maxlength="40" />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default">Ekle</button>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>sametSenturk  &copy; Copyright 2017 Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/jquery.js"></script>
+
+    <script src="~/Content/indexjs/bootstrap.min.js"></script>
+
+
+
+
+</body>
+</html>

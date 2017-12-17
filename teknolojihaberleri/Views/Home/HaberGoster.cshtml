@@ -1,0 +1,119 @@
+﻿@model  teknolojihaberleri.Models.HaberSayfasiCek
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="tr" />
+    <meta name="description" content=@Model.Ilgili_Haber.Ozet.ToString() />
+    <meta name="keywords" content="teknoloji, teknoloji haberleri, haberler, güncel teknoloji haberleri " />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Ilgili_Haber.Baslik.ToString()</title>
+    <link href="~/Content/indexcss/1-col-portfolio.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/habergostercss/yorumlar.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Yonlendir_AnaSayfa">Sametsenturk.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home/Yonlendir_AnaSayfa">Ana Sayfa</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Yonlendir_Ben">Ben Kimim ?</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Yonlendir_Iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+    @**@
+
+    <div class="row">
+
+        <div>
+            <a href="#">
+                <img class="img-responsive" src="~/Images/dunya.png" alt="Haber Resim" />
+            </a>
+        </div>
+        <div>
+            <h1 class="h1 text-center">@Model.Ilgili_Haber.Baslik.ToString()<small>@Model.Ilgili_Haber.Konu.ToString()</small></h1>
+            <br />
+            <h4 class="text-center"><strong>@Model.Ilgili_Haber.Ozet.ToString()</strong></h4>
+            <blockquote>
+                <h4 class="text-center">@Model.Ilgili_Haber.Icerik.ToString()</h4>
+            </blockquote>
+            <br />
+            <a href="~/Home/Yonlendir_Iletisim" title="Iletişim Sayfası">
+                <img class="img-responsive" src="~/Images/reklambanner.png" alt="Reklam Resim" />
+            </a>
+        </div>
+    </div>
+
+
+    <div class="detailBox">
+        <div class="titleBox">
+            <label>Ziyaretçi Yorumları</label>
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+        </div>
+        <div class="commentBox">
+
+            <p class="taskDescription">Lütfen bu alanı iyi niyetli kullanınız.</p>
+        </div>
+        <div class="actionBox">
+            @foreach (teknolojihaberleri.Models.Yorum onecomment in Model.Yorumlar)
+            {
+                <ul class="commentList">
+                    <li>
+                        <div class="commenterImage">
+                            <img src="~/Images/commentimg.png" alt="Kullanıcı Resim" />
+                        </div>
+                        <div class="commentText">
+                            <p class="">@onecomment.Icerik.ToString()</p> <span class="date sub-text">@onecomment.Zaman.ToString()</span>
+                        </div>
+                    </li>
+                </ul>
+            }
+
+            @using (Html.BeginForm("Haber_Yorum_Ekle", "Home", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+            {
+                @ViewBag["habergoster_id"] = Model.Ilgili_Haber.Id.ToString();
+                <form>
+                    <div class="form-group">
+                        <input name="txtyorum" class="form-control" type="text" placeholder="Adınız - Yorumunuz" maxlength="40" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default">Ekle</button>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+
+
+</body>
+</html>

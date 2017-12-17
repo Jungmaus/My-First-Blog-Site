@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="tr" />
+    <meta name="description" content="En güncel Teknoloji Haberlerini burada bulabilirsiniz." />
+    <meta name="keywords" content="teknoloji, teknoloji haberleri, haberler, güncel teknoloji haberleri " />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Iletisim Sayfası</title>
+    <link href="~/Content/indexcss/1-col-portfolio.css" rel="stylesheet" />
+    <link href="~/Content/iletisimcss/css.css" rel="stylesheet" />
+    <link href="~/Content/indexcss/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Yonlendir_AnaSayfa">Sametsenturk.com</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home/Yonlendir_AnaSayfa">Ana Sayfa</a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Yonlendir_Ben">Ben Kimim ?</a>
+                    </li>
+                    <li>
+                        <a href="~/Yonlendir_Iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+
+            <div class="col-md-offset-4 col-md-4" id="box">
+                <h2>İletişime Geç!</h2>
+
+                <hr>
+                @using (Html.BeginForm("Iletisim_Gonder", "Home", FormMethod.Post, new { @class = "form-horizontal", id = "contact_form", role = "form" }))
+                {
+                    <form>
+                        <fieldset>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input name="txtad" placeholder="İsim" class="form-control" type="text" maxlength="15" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input name="txtemail" placeholder="E-Mail Adresi" class="form-control" type="text" maxlength="30" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                        <input name="txttel" placeholder="528-108-7116" class="form-control" type="text" maxlength="11" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <textarea class="form-control" name="txtmesaj" placeholder="Mesajınız (max.200)" maxlength="200" required="required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-warning pull-right">Gönder <span class="glyphicon glyphicon-send" required="required"></span></button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
